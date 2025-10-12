@@ -45,7 +45,15 @@ jobs:
           fi
 
           echo "✅ 配置文件检查通过"
-
+      - name: Debug environment variables
+        env:
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          echo "EMAIL_FROM: $EMAIL_FROM"
+          echo "EMAIL_TO: $EMAIL_TO"
+          echo "EMAIL_SMTP_SERVER: $EMAIL_SMTP_SERVER"
+          
       - name: Run crawler
         env:
           FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
@@ -62,7 +70,7 @@ jobs:
           NTFY_SERVER_URL: ${{ secrets.NTFY_SERVER_URL }}
           NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
           GITHUB_ACTIONS: true
-        run: python main.py
+        #run: python main.py
 
       - name: Commit and push if changes
         run: |
