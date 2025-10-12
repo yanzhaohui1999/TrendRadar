@@ -70,7 +70,9 @@ jobs:
           NTFY_SERVER_URL: ${{ secrets.NTFY_SERVER_URL }}
           NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
           GITHUB_ACTIONS: true
-        #run: python main.py
+        run: 
+          echo "test"
+          #python main.py
 
       - name: Commit and push if changes
         run: |
